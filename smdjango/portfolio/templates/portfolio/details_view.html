@@ -1,0 +1,47 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}{{ project.name }}{% endblock %}
+
+{% block content %}
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+  
+          <div class="row">
+
+            <div class="col-lg-8">
+              <div class="portfolio-details-slider swiper">
+                <div class="swiper-wrapper align-items-center">
+
+                  {% for image in project.project_images.all %}
+                    <div class="swiper-slide">
+                      <img src="{{ image.image.url }}" alt="">
+                    </div>
+                  {% endfor %}
+  
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 portfolio-info">
+              <h3>Описание проекта</h3>
+              <ul>
+                {% comment %} <li><strong>Категория</strong>: </li> {% endcomment %}
+                <li><strong>Заказчик</strong>: {{ project.client }}</li>
+                <li><strong>Должность</strong>: {{ project.spec }}</li>
+                <li><strong>Период</strong>: {{ project.period }}</li>
+                <li><strong>Сайт проекта</strong>: <a href="{{ project.siteurl }}" target="_blank">{{ project.siteurl }}</a></li>
+              </ul>
+  
+              <p>
+                {{ project.description }}
+              </p>
+            </div>
+  
+          </div>
+  
+        </div>
+    </section><!-- End Portfolio Details Section -->
+{% endblock %}
